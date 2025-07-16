@@ -1,0 +1,17 @@
+{% extends 'main/home.html' %}
+{% block content %}
+{% if messages %}
+  <ul class="messages">
+    {% for message in messages %}
+      <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+  </ul>
+{% endif %}
+<h2>Delete Task</h2>
+<p>Are you sure you want to delete the task: <strong>{{ object.title }}</strong>?</p>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">Yes, delete</button>
+    <a href="{% url 'main:task_list' %}">Cancel</a>
+</form>
+{% endblock %} 

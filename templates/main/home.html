@@ -1,0 +1,64 @@
+{% extends 'main/home_temp.html' %}
+
+{% load static %}
+
+{% block content %}
+<style>
+  .messages {
+    list-style: none;
+    padding: 0;
+    margin: 1em 0;
+  }
+  .messages li {
+    padding: 0.75em 1em;
+    margin-bottom: 0.5em;
+    border-radius: 4px;
+    background: #f0f4f8;
+    color: #333;
+    border-left: 5px solid #007bff;
+    font-size: 1em;
+  }
+  .messages li.success {
+    border-left-color: #28a745;
+    background: #e6f9ed;
+    color: #155724;
+  }
+  .messages li.error {
+    border-left-color: #dc3545;
+    background: #f8d7da;
+    color: #721c24;
+  }
+  .messages li.info {
+    border-left-color: #17a2b8;
+    background: #d1ecf1;
+    color: #0c5460;
+  }
+  .messages li.warning {
+    border-left-color: #ffc107;
+    background: #fff3cd;
+    color: #856404;
+  }
+</style>
+<nav>
+  <ul>
+    <!-- <li><a href="{% url 'main:task_list' %}">Task List</a></li> -->
+    <li><a href="{% url 'main:task_create' %}">Create Task</a></li>
+    {% if user.is_authenticated %}
+      <li><a href="{% url 'authentication:logout' %}" class="btn btn-outline-danger btn-sm ms-2">Logout</a></li>
+    {% else %}
+      <li><a href="{% url 'authentication:login' %}">Login</a></li>
+      <li><a href="{% url 'authentication:register' %}">Register</a></li>
+    {% endif %}
+  </ul>
+</nav>
+
+<h1>Homepage</h1>
+
+<!-- Footer End -->
+{% endblock %}
+
+
+    
+    
+
+  

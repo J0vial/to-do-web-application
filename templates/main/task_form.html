@@ -1,0 +1,43 @@
+{% extends 'main/home.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<style>
+  .form-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  .form-control, .form-select {
+    padding: 5px 5px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: 2px solid #e1e5e9;
+    transition: border-color 0.3s ease;
+    margin: 5px;
+  }
+  .form-control:focus, .form-select:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  }
+  textarea.form-control {
+    min-height: 100px;
+    resize: vertical;
+  }
+  .btn {
+    padding: 12px 24px;
+    font-size: 16px;
+    border-radius: 8px;
+  }
+</style>
+
+<div class="form-container">
+ 
+  <h2>{% if form.instance.pk %}Edit Task{% else %}Create Task{% endif %}</h2>
+  <form method="post">
+      {% csrf_token %}
+      {{ form|crispy }}
+      <button type="submit" class="btn btn-primary">Save</button>
+  </form>
+  <a href="{% url 'main:task_list' %}">Back to Task List</a>
+</div>
+{% endblock %} 

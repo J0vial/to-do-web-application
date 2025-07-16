@@ -1,0 +1,41 @@
+{% extends 'authentication/index.html' %}
+
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+<style>
+  .auth-form-container {
+    max-width: 400px;
+    margin: 40px auto;
+    padding: 32px 24px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+  }
+</style>
+<div class="main">
+  <section class="signup">
+    <div class="container">
+      <div class="auth-form-container">
+        <form method="post" id="register-form" class="signup-form">
+          {% csrf_token %}
+          <h2 class="text-center mb-4"><b>Register</b></h2>
+          {% if register_form.errors %}
+            <div class="alert alert-danger">
+              {{ register_form.errors }}
+            </div>
+          {% endif %}
+          {{ register_form|crispy }}
+          <div class="form-group text-center mt-3">
+            <button type="submit" name="submit" id="submit" class="btn btn-primary w-100">
+              Register
+            </button>
+          </div>
+        </form>
+        <p class="text-center mt-3">Already have an account? <a href="{% url 'authentication:login' %}">Login</a>.</p>
+      </div>
+    </div>
+  </section>
+</div>
+{% endblock %}

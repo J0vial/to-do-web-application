@@ -1,0 +1,13 @@
+{% extends 'main/home.html' %}
+{% block content %}
+<h2>Task Details</h2>
+<ul>
+    <li><strong>Title:</strong> {{ task.title }}</li>
+    <li><strong>Description:</strong> {{ task.description }}</li>
+    <li><strong>Status:</strong> {{ task.get_status_display }}</li>
+    <li><strong>Due Date:</strong> {{ task.due_date }}</li>
+</ul>
+<a href="{% url 'main:task_update' task.pk %}">Edit</a> |
+<a href="{% url 'main:task_delete' task.pk %}">Delete</a> |
+<a href="{% url 'main:task_list' %}">Back to Task List</a>
+{% endblock %} 
